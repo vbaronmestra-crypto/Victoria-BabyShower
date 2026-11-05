@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baby Shower de Victoria - Sábado 5 de Diciembre</title>
+  <title>Baby Shower de Victoria Barón Serna - Sábado 5 de Diciembre</title>
   
+  <!-- Open Graph / Vista previa para WhatsApp y Redes Sociales -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="¡Baby Shower de Victoria!">
-  <meta property="og:description" content="Sábado 5 de diciembre de 2026 a las 4:00 PM. Acompáñanos a celebrar la dulce espera. Toca para abrir la invitación.">
+  <meta property="og:title" content="¡Baby Shower de Victoria Barón Serna!">
+  <meta property="og:description" content="Sábado 5 de diciembre · 4:00 PM · Conjunto Residencial Torre 44, Montería. ¡Acompáñanos a celebrar la dulce espera!">
   <meta property="og:image" content="https://vbaronmestra-crypto.github.io/Victoria-BabyShower/portada.jpg">
   <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:height" content="1200">
 
+  <!-- Fuentes tipográficas elegantes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -52,6 +54,7 @@
       position: relative;
     }
 
+    /* SOBRE INTERACTIVO */
     .envelope-screen {
       background: #ffffff;
       border-radius: 20px;
@@ -83,13 +86,13 @@
       color: #ffffff;
       box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
       cursor: pointer;
-      animation: pulse 2.2s infinite ease-in-out;
+      animation: pulse 1.8s infinite ease-in-out;
       border: 3px solid #ffffff;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35); }
-      50% { transform: scale(1.05); box-shadow: 0 12px 28px rgba(212, 175, 55, 0.5); }
+      50% { transform: scale(1.06); box-shadow: 0 12px 28px rgba(212, 175, 55, 0.5); }
       100% { transform: scale(1); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35); }
     }
 
@@ -135,6 +138,7 @@
       transform: scale(0.98);
     }
 
+    /* TARJETA PRINCIPAL */
     .invitation-card {
       display: none;
       background: #ffffff;
@@ -159,23 +163,23 @@
       position: absolute;
       top: 18px;
       right: 18px;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: #ffffff;
       border: 1px solid var(--primary-pink);
-      box-shadow: 0 4px 10px rgba(217, 125, 145, 0.25);
+      box-shadow: 0 4px 12px rgba(217, 125, 145, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
       z-index: 10;
       transition: transform 0.2s;
     }
 
     .music-floating-btn.playing {
-      animation: rotateMusic 4s linear infinite;
+      animation: rotateMusic 2.8s linear infinite;
     }
 
     @keyframes rotateMusic {
@@ -207,15 +211,16 @@
 
     .baby-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 52px;
+      font-size: 46px;
       color: var(--deep-pink);
-      line-height: 1.1;
+      line-height: 1.15;
       margin: 4px 0 12px;
     }
 
+    /* ANIMACION ALEGRE Y RÍTMICA DE BAILE DE LA CONEJITA CON TUTÚ */
     .bunny-img-container {
-      width: 210px;
-      height: 210px;
+      width: 220px;
+      height: 220px;
       margin: 0 auto;
       border-radius: 50%;
       background: #fffafb;
@@ -231,34 +236,29 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform-origin: 50% 85%;
-      animation: bunnyBalletDance 3.4s ease-in-out infinite;
+      transform-origin: 50% 90%;
+      animation: bunnyLivelyDance 1.6s ease-in-out infinite alternate;
     }
 
-    @keyframes bunnyBalletDance {
+    @keyframes bunnyLivelyDance {
       0% {
-        transform: rotate(0deg) translateY(0px) scale(1);
+        transform: rotate(-5deg) translateY(0px) scale(1);
       }
-      18% {
-        transform: rotate(-3.5deg) translateY(-5px) scale(1.02);
-      }
-      36% {
-        transform: rotate(3.5deg) translateY(-2px) scale(1.02);
+      25% {
+        transform: rotate(0deg) translateY(-8px) scale(1.04);
       }
       50% {
-        transform: rotate(0deg) translateY(-8px) scale(1.03);
+        transform: rotate(5deg) translateY(0px) scale(1);
       }
-      68% {
-        transform: rotate(-2.5deg) translateY(-3px) scale(1.01);
-      }
-      84% {
-        transform: rotate(2.5deg) translateY(-1px) scale(1);
+      75% {
+        transform: rotate(0deg) translateY(-6px) scale(1.03);
       }
       100% {
-        transform: rotate(0deg) translateY(0px) scale(1);
+        transform: rotate(-5deg) translateY(0px) scale(1);
       }
     }
 
+    /* CONTADOR REGRESIVO */
     .countdown-box {
       margin: 16px 20px;
       background: #fff8f9;
@@ -286,6 +286,7 @@
       margin-top: 4px;
     }
 
+    /* SECCIÓN DETALLES */
     .card-body {
       padding: 10px 24px 28px;
     }
@@ -377,6 +378,7 @@
 
 <div class="main-wrapper">
 
+  <!-- PANTALLA 1: SOBRE DE BIENVENIDA -->
   <div class="envelope-screen" id="envelopeScreen">
     <div class="monogram-badge" onclick="abrirInvitacion()">V</div>
     <div class="guest-tag">Invitación Especial Para</div>
@@ -385,19 +387,22 @@
     <button class="btn-open" onclick="abrirInvitacion()">Toca para abrir</button>
   </div>
 
+  <!-- PANTALLA 2: INVITACIÓN COMPLETA -->
   <div class="invitation-card" id="invitationCard">
     <button class="music-floating-btn playing" id="musicBtn" onclick="alternarMusica()" title="Pausar o reanudar música">🎵</button>
 
     <div class="hero-banner">
       <div class="floral-top">🌸 🌿 🌸</div>
       <div class="welcome-text">Acompáñanos a celebrar la dulce espera de</div>
-      <h1 class="baby-title">Victoria</h1>
+      <h1 class="baby-title">Victoria Barón Serna</h1>
       
       <div class="bunny-img-container">
-        <img src="portada.jpg" alt="Conejita con Tutú Baby Shower Victoria" onerror="this.src='https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400'">
+        <!-- Imagen de la conejita con tutú (portada.jpg) -->
+        <img src="portada.jpg" alt="Conejita con Tutú Baby Shower Victoria Barón Serna" onerror="this.src='https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400'">
       </div>
     </div>
 
+    <!-- CONTADOR REGRESIVO -->
     <div class="countdown-box">
       <div class="count-item">
         <div class="number" id="cd-dias">00</div>
@@ -419,12 +424,14 @@
 
     <div class="card-body">
 
+      <!-- FECHA Y HORA -->
       <div class="info-block">
         <div class="info-header">📅 Fecha y Hora</div>
         <div class="info-main">Sábado, 5 de Diciembre de 2026</div>
         <div class="info-sub">Hora: 4:00 PM</div>
       </div>
 
+      <!-- LUGAR DEL EVENTO -->
       <div class="info-block">
         <div class="info-header">📍 Ubicación del Evento</div>
         <div class="info-main">Conjunto Residencial Torre 44</div>
@@ -435,6 +442,7 @@
         </div>
       </div>
 
+      <!-- LISTA DE REGALOS -->
       <div class="info-block">
         <div class="info-header">🎁 Lista Sugerida de Regalos</div>
         <div class="info-main">Almacén SurtiBaby</div>
@@ -444,12 +452,13 @@
         </div>
       </div>
 
+      <!-- BOTÓN CONFIRMACIÓN WHATSAPP -->
       <a class="action-button-main" id="btnWhatsapp" href="#" target="_blank">
         Confirmar Asistencia por WhatsApp
       </a>
 
       <div class="footer-note">
-        ¡Tu compañía y cariño son el mejor regalo para Victoria!
+        ¡Tu compañía y cariño son el mejor regalo para Victoria Barón Serna!
       </div>
     </div>
   </div>
@@ -461,48 +470,65 @@
   const invitado = urlParams.get('para') || 'Familia y Amigos';
   document.getElementById('nombreInvitadoSobre').textContent = decodeURIComponent(invitado);
 
-  const mensajeWA = encodeURIComponent('¡Hola! Con mucho gusto confirmo mi asistencia al Baby Shower de Victoria.');
+  const mensajeWA = encodeURIComponent('¡Hola! Con mucho gusto confirmo mi asistencia al Baby Shower de Victoria Barón Serna.');
   document.getElementById('btnWhatsapp').href = 'https://api.whatsapp.com/send?text=' + mensajeWA;
 
+  // SINTETIZADOR MUSICAL: VALS ALEGRE Y FESTIVO DE CELEBRACIÓN
   let audioCtx = null;
   let isPlayingMusic = false;
   let melodyTimer = null;
 
-  const notas = [
-    { freq: 261.63, dur: 0.5 },
-    { freq: 261.63, dur: 0.5 },
-    { freq: 392.00, dur: 0.5 },
-    { freq: 392.00, dur: 0.5 },
-    { freq: 440.00, dur: 0.5 },
-    { freq: 440.00, dur: 0.5 },
-    { freq: 392.00, dur: 1.0 },
-    { freq: 349.23, dur: 0.5 },
-    { freq: 349.23, dur: 0.5 },
-    { freq: 329.63, dur: 0.5 },
-    { freq: 329.63, dur: 0.5 },
-    { freq: 293.66, dur: 0.5 },
-    { freq: 293.66, dur: 0.5 },
-    { freq: 261.63, dur: 1.0 }
+  const melodiaAnimada = [
+    { f: 523.25, d: 0.28 },
+    { f: 659.25, d: 0.28 },
+    { f: 783.99, d: 0.28 },
+    { f: 1046.50, d: 0.45 },
+    { f: 880.00, d: 0.28 },
+    { f: 783.99, d: 0.28 },
+    { f: 659.25, d: 0.45 },
+    { f: 698.46, d: 0.28 },
+    { f: 880.00, d: 0.28 },
+    { f: 1046.50, d: 0.45 },
+    { f: 783.99, d: 0.55 },
+    { f: 659.25, d: 0.24 },
+    { f: 698.46, d: 0.24 },
+    { f: 783.99, d: 0.24 },
+    { f: 880.00, d: 0.24 },
+    { f: 783.99, d: 0.35 },
+    { f: 659.25, d: 0.35 },
+    { f: 587.33, d: 0.35 },
+    { f: 523.25, d: 0.60 }
   ];
 
-  function reproducirNota(freq, duration) {
+  function tocarCampanilla(freq, dur) {
     if (!audioCtx || !isPlayingMusic) return;
     try {
       const osc = audioCtx.createOscillator();
+      const oscHarmonic = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
-      osc.type = 'sine';
+
+      osc.type = 'triangle';
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      oscHarmonic.type = 'sine';
+      oscHarmonic.frequency.setValueAtTime(freq * 2, audioCtx.currentTime);
+
       gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      gain.gain.linearRampToValueAtTime(0.22, audioCtx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur * 1.3);
+
       osc.connect(gain);
+      oscHarmonic.connect(gain);
       gain.connect(audioCtx.destination);
+
       osc.start();
-      osc.stop(audioCtx.currentTime + duration);
+      oscHarmonic.start();
+      osc.stop(audioCtx.currentTime + dur * 1.3);
+      oscHarmonic.stop(audioCtx.currentTime + dur * 1.3);
     } catch(e) {}
   }
 
-  function iniciarMelodiaCajaMusica() {
+  function iniciarMelodiaAnimada() {
     if (!audioCtx) {
       audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
@@ -514,17 +540,17 @@
     document.getElementById('musicBtn').textContent = '🎵';
 
     let index = 0;
-    function pasoMelodia() {
+    function paso() {
       if (!isPlayingMusic) return;
-      const n = notas[index];
-      reproducirNota(n.freq, n.dur * 0.9);
-      index = (index + 1) % notas.length;
-      melodyTimer = setTimeout(pasoMelodia, n.dur * 850);
+      const nota = melodiaAnimada[index];
+      tocarCampanilla(nota.f, nota.d);
+      index = (index + 1) % melodiaAnimada.length;
+      melodyTimer = setTimeout(paso, nota.d * 750);
     }
-    pasoMelodia();
+    paso();
   }
 
-  function detenteMelodia() {
+  function detenerMelodia() {
     isPlayingMusic = false;
     if (melodyTimer) clearTimeout(melodyTimer);
     document.getElementById('musicBtn').classList.remove('playing');
@@ -533,16 +559,16 @@
 
   function alternarMusica() {
     if (isPlayingMusic) {
-      detenteMelodia();
+      detenerMelodia();
     } else {
-      iniciarMelodiaCajaMusica();
+      iniciarMelodiaAnimada();
     }
   }
 
   function abrirInvitacion() {
     document.getElementById('envelopeScreen').classList.add('opened');
     document.getElementById('invitationCard').classList.add('active');
-    iniciarMelodiaCajaMusica();
+    iniciarMelodiaAnimada();
   }
 
   const eventDate = new Date('2026-12-05T16:00:00').getTime();
