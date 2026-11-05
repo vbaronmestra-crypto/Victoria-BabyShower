@@ -345,15 +345,15 @@
   </audio>
 
   <div class="envelope-screen" id="envelopeScreen">
-    <div class="monogram-badge" onclick="abrirInvitacion()">V</div>
+    <div class="monogram-badge" id="selloSobre">V</div>
     <div class="guest-tag">Invitación Especial Para</div>
     <div class="guest-name-envelope" id="nombreInvitadoSobre">Familia y Amigos</div>
     <p class="envelope-subtitle">Una nueva vida está por comenzar y queremos compartir esta alegría con ustedes.</p>
-    <button class="btn-open" onclick="abrirInvitacion()">Toca para abrir</button>
+    <button class="btn-open" id="botonAbrirSobre">Toca para abrir</button>
   </div>
 
   <div class="invitation-card" id="invitationCard">
-    <button class="music-floating-btn" id="musicBtn" onclick="alternarMusica()" title="Pausar o reanudar música">🎵</button>
+    <button class="music-floating-btn" id="musicBtn" title="Pausar o reanudar música">🎵</button>
 
     <div class="hero-banner">
       <div class="floral-top">🌸 🌿 🌸</div>
@@ -433,14 +433,20 @@
 
   const audio = document.getElementById('audioFondo');
   const musicBtn = document.getElementById('musicBtn');
+  const botonAbrir = document.getElementById('botonAbrirSobre');
+  const selloSobre = document.getElementById('selloSobre');
 
-  function abrirInvitacion() {
+  function abrirConMusica() {
+    // 1. Mostrar la tarjeta de inmediato
     document.getElementById('envelopeScreen').style.display = 'none';
     document.getElementById('invitationCard').style.display = 'block';
 
-    try {
-      if (audio) {
-        audio.play().then(() => {
+    // 2. Ejecutar la reproducción directa dentro del gesto del usuario
+    if (audio) {
+      audio.load();
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
           musicBtn.classList.add('playing');
           musicBtn.textContent = '🎵';
         }).catch(err => {
@@ -448,10 +454,14 @@
           musicBtn.textContent = '🔇';
         });
       }
-    } catch (e) {}
+    }
   }
 
-  function alternarMusica() {
+  // Asignar controladores táctiles directos requeridos por Safari en iOS
+  botonAbrir.addEventListener('click', abrirConMusica, false);
+  selloSobre.addEventListener('click', abrirConMusica, false);
+
+  musicBtn.addEventListener('click', function() {
     if (!audio) return;
     if (audio.paused) {
       audio.play().then(() => {
@@ -463,7 +473,7 @@
       musicBtn.classList.remove('playing');
       musicBtn.textContent = '🔇';
     }
-  }
+  });
 
   const eventDate = new Date('2026-12-05T16:00:00').getTime();
   setInterval(function() {
