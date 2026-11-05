@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Baby Shower de Victoria - Sábado 5 de Diciembre</title>
   
-  <!-- Open Graph / Vista previa para WhatsApp y Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="¡Baby Shower de Victoria!">
   <meta property="og:description" content="Sábado 5 de diciembre de 2026 a las 4:00 PM. Acompáñanos a celebrar la dulce espera. Toca para abrir la invitación.">
@@ -13,7 +12,6 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
-  <!-- Fuentes tipográficas elegantes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -54,7 +52,6 @@
       position: relative;
     }
 
-    /* SOBRE INTERACTIVO */
     .envelope-screen {
       background: #ffffff;
       border-radius: 20px;
@@ -138,7 +135,6 @@
       transform: scale(0.98);
     }
 
-    /* TARJETA PRINCIPAL */
     .invitation-card {
       display: none;
       background: #ffffff;
@@ -159,7 +155,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* BOTON DE CONTROL MUSICAL */
     .music-floating-btn {
       position: absolute;
       top: 18px;
@@ -218,7 +213,6 @@
       margin: 4px 0 12px;
     }
 
-    /* CONTENEDOR Y ANIMACION DE BAILE DE LA CONEJITA CON TUTU */
     .bunny-img-container {
       width: 210px;
       height: 210px;
@@ -265,7 +259,6 @@
       }
     }
 
-    /* CONTADOR REGRESIVO */
     .countdown-box {
       margin: 16px 20px;
       background: #fff8f9;
@@ -293,7 +286,6 @@
       margin-top: 4px;
     }
 
-    /* SECCIÓN DETALLES */
     .card-body {
       padding: 10px 24px 28px;
     }
@@ -385,18 +377,15 @@
 
 <div class="main-wrapper">
 
-  <!-- PANTALLA 1: SOBRE DE BIENVENIDA -->
   <div class="envelope-screen" id="envelopeScreen">
     <div class="monogram-badge" onclick="abrirInvitacion()">V</div>
     <div class="guest-tag">Invitación Especial Para</div>
-    <div class="guest-name-envelope" id="nombreInvitadoSobre">Apreciada Familia</div>
-    <p class="envelope-subtitle">Una nueva vida está por comenzar y queremos compartir esta alegría contigo.</p>
+    <div class="guest-name-envelope" id="nombreInvitadoSobre">Familia y Amigos</div>
+    <p class="envelope-subtitle">Una nueva vida está por comenzar y queremos compartir esta alegría con ustedes.</p>
     <button class="btn-open" onclick="abrirInvitacion()">Toca para abrir</button>
   </div>
 
-  <!-- PANTALLA 2: INVITACIÓN COMPLETA -->
   <div class="invitation-card" id="invitationCard">
-    <!-- Botón flotante para pausar o reactivar la música -->
     <button class="music-floating-btn playing" id="musicBtn" onclick="alternarMusica()" title="Pausar o reanudar música">🎵</button>
 
     <div class="hero-banner">
@@ -405,12 +394,10 @@
       <h1 class="baby-title">Victoria</h1>
       
       <div class="bunny-img-container">
-        <!-- Imagen de la conejita con tutú (portada.jpg) animada bailando -->
         <img src="portada.jpg" alt="Conejita con Tutú Baby Shower Victoria" onerror="this.src='https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400'">
       </div>
     </div>
 
-    <!-- CONTADOR REGRESIVO -->
     <div class="countdown-box">
       <div class="count-item">
         <div class="number" id="cd-dias">00</div>
@@ -432,14 +419,12 @@
 
     <div class="card-body">
 
-      <!-- FECHA Y HORA -->
       <div class="info-block">
         <div class="info-header">📅 Fecha y Hora</div>
         <div class="info-main">Sábado, 5 de Diciembre de 2026</div>
         <div class="info-sub">Hora: 4:00 PM</div>
       </div>
 
-      <!-- LUGAR DEL EVENTO -->
       <div class="info-block">
         <div class="info-header">📍 Ubicación del Evento</div>
         <div class="info-main">Conjunto Residencial Torre 44</div>
@@ -450,7 +435,6 @@
         </div>
       </div>
 
-      <!-- LISTA DE REGALOS -->
       <div class="info-block">
         <div class="info-header">🎁 Lista Sugerida de Regalos</div>
         <div class="info-main">Almacén SurtiBaby</div>
@@ -460,7 +444,6 @@
         </div>
       </div>
 
-      <!-- BOTÓN CONFIRMACIÓN WHATSAPP -->
       <a class="action-button-main" id="btnWhatsapp" href="#" target="_blank">
         Confirmar Asistencia por WhatsApp
       </a>
@@ -474,35 +457,32 @@
 </div>
 
 <script>
-  // Personalización por parámetro en la URL (?para=Familia+Perez)
   const urlParams = new URLSearchParams(window.location.search);
-  const invitado = urlParams.get('para') || 'Apreciada Familia';
+  const invitado = urlParams.get('para') || 'Familia y Amigos';
   document.getElementById('nombreInvitadoSobre').textContent = decodeURIComponent(invitado);
 
-  // Enlace dinámico de WhatsApp
   const mensajeWA = encodeURIComponent('¡Hola! Con mucho gusto confirmo mi asistencia al Baby Shower de Victoria.');
   document.getElementById('btnWhatsapp').href = 'https://api.whatsapp.com/send?text=' + mensajeWA;
 
-  // SISTEMA DE AUDIO INTERNO (Melodía de Cuna - Caja de Música con Web Audio API)
   let audioCtx = null;
   let isPlayingMusic = false;
   let melodyTimer = null;
 
   const notas = [
-    { freq: 261.63, dur: 0.5 }, // C4
-    { freq: 261.63, dur: 0.5 }, // C4
-    { freq: 392.00, dur: 0.5 }, // G4
-    { freq: 392.00, dur: 0.5 }, // G4
-    { freq: 440.00, dur: 0.5 }, // A4
-    { freq: 440.00, dur: 0.5 }, // A4
-    { freq: 392.00, dur: 1.0 }, // G4
-    { freq: 349.23, dur: 0.5 }, // F4
-    { freq: 349.23, dur: 0.5 }, // F4
-    { freq: 329.63, dur: 0.5 }, // E4
-    { freq: 329.63, dur: 0.5 }, // E4
-    { freq: 293.66, dur: 0.5 }, // D4
-    { freq: 293.66, dur: 0.5 }, // D4
-    { freq: 261.63, dur: 1.0 }  // C4
+    { freq: 261.63, dur: 0.5 },
+    { freq: 261.63, dur: 0.5 },
+    { freq: 392.00, dur: 0.5 },
+    { freq: 392.00, dur: 0.5 },
+    { freq: 440.00, dur: 0.5 },
+    { freq: 440.00, dur: 0.5 },
+    { freq: 392.00, dur: 1.0 },
+    { freq: 349.23, dur: 0.5 },
+    { freq: 349.23, dur: 0.5 },
+    { freq: 329.63, dur: 0.5 },
+    { freq: 329.63, dur: 0.5 },
+    { freq: 293.66, dur: 0.5 },
+    { freq: 293.66, dur: 0.5 },
+    { freq: 261.63, dur: 1.0 }
   ];
 
   function reproducirNota(freq, duration) {
@@ -544,7 +524,7 @@
     pasoMelodia();
   }
 
-  function detenerMelodia() {
+  function detenteMelodia() {
     isPlayingMusic = false;
     if (melodyTimer) clearTimeout(melodyTimer);
     document.getElementById('musicBtn').classList.remove('playing');
@@ -553,20 +533,18 @@
 
   function alternarMusica() {
     if (isPlayingMusic) {
-      detenerMelodia();
+      detenteMelodia();
     } else {
       iniciarMelodiaCajaMusica();
     }
   }
 
-  // Apertura de sobre con activación musical
   function abrirInvitacion() {
     document.getElementById('envelopeScreen').classList.add('opened');
     document.getElementById('invitationCard').classList.add('active');
     iniciarMelodiaCajaMusica();
   }
 
-  // Cuenta regresiva al 5 de Diciembre de 2026 a las 4:00 PM
   const eventDate = new Date('2026-12-05T16:00:00').getTime();
   setInterval(function() {
     const now = new Date().getTime();
