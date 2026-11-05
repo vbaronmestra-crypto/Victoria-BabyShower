@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby Shower de Victoria - Sábado 5 de Diciembre</title>
+  
+  <!-- Open Graph / Vista previa para WhatsApp y Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="¡Baby Shower de Victoria!">
+  <meta property="og:description" content="Sábado 5 de diciembre de 2026 a las 4:00 PM. Acompáñanos a celebrar la dulce espera. Haz clic para abrir la invitación.">
+  <meta property="og:image" content="portada.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Fuentes tipográficas elegantes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-pink: #f7d6dc;
+      --deep-pink: #d97d91;
+      --soft-rose: #fbf5f4;
+      --gold: #d4af37;
+      --sage-green: #90a48a;
+      --text-dark: #4a3e3d;
+      --text-muted: #7d706f;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at center, #fff6f8 0%, #faedf0 100%);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    .main-wrapper {
+      width: 100%;
+      max-width: 440px;
+      perspective: 1200px;
+      position: relative;
+    }
+
+    /* SOBRE INTERACTIVO */
+    .envelope-screen {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 16px 36px rgba(217, 125, 145, 0.18);
+      padding: 36px 24px;
+      text-align: center;
+      border: 1px solid rgba(217, 125, 145, 0.2);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .envelope-screen.opened {
+      opacity: 0;
+      transform: scale(0.9) translateY(-30px);
+      pointer-events: none;
+      display: none;
+    }
+
+    .monogram-badge {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fceda2 0%, var(--gold) 50%, #997415 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: 46px;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+      cursor: pointer;
+      animation: pulse 2.2s infinite ease-in-out;
+      border: 3px solid #ffffff;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35); }
+      50% { transform: scale(1.05); box-shadow: 0 12px 28px rgba(212, 175, 55, 0.5); }
+      100% { transform: scale(1); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35); }
+    }
+
+    .guest-tag {
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--deep-pink);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .guest-name-envelope {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+
+    .envelope-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .btn-open {
+      background: linear-gradient(135deg, #e3899d 0%, #c86b80 100%);
+      color: #ffffff;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(217, 125, 145, 0.35);
+      transition: transform 0.2s;
+    }
+
+    .btn-open:active {
+      transform: scale(0.98);
+    }
+
+    /* TARJETA PRINCIPAL */
+    .invitation-card {
+      display: none;
+      background: #ffffff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(180, 120, 135, 0.2);
+      border: 1px solid rgba(247, 214, 220, 0.6);
+      animation: fadeInCard 0.9s ease-out forwards;
+    }
+
+    .invitation-card.active {
+      display: block;
+    }
+
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-banner {
+      background: linear-gradient(180deg, #fef4f6 0%, #ffffff 100%);
+      padding: 30px 20px 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .floral-top {
+      font-size: 22px;
+      letter-spacing: 6px;
+      color: var(--deep-pink);
+      opacity: 0.6;
+      margin-bottom: 6px;
+    }
+
+    .welcome-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .baby-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 52px;
+      color: var(--deep-pink);
+      line-height: 1.1;
+      margin: 4px 0 12px;
+    }
+
+    .bunny-img-container {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: #fffafb;
+      box-shadow: inset 0 0 15px rgba(217, 125, 145, 0.15);
+      border: 4px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .bunny-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* CONTADOR REGRESIVO */
+    .countdown-box {
+      margin: 16px 20px;
+      background: #fff8f9;
+      border: 1px dashed var(--primary-pink);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .count-item .number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--deep-pink);
+      line-height: 1;
+    }
+
+    .count-item .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* SECCIÓN DETALLES */
+    .card-body {
+      padding: 10px 24px 28px;
+    }
+
+    .info-block {
+      background: #faf7f8;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      border-left: 4px solid var(--deep-pink);
+    }
+
+    .info-header {
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--deep-pink);
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-main {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 3px;
+    }
+
+    .info-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .button-group-links {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-link-action {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--deep-pink);
+      background: #ffffff;
+      border: 1px solid var(--primary-pink);
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn-link-action:hover {
+      background: var(--soft-rose);
+    }
+
+    .action-button-main {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 18px;
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.25);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+  <!-- PANTALLA 1: SOBRE DE BIENVENIDA -->
+  <div class="envelope-screen" id="envelopeScreen">
+    <div class="monogram-badge" onclick="abrirInvitacion()">V</div>
+    <div class="guest-tag">Invitación Especial Para</div>
+    <div class="guest-name-envelope" id="nombreInvitadoSobre">Apreciada Familia</div>
+    <p class="envelope-subtitle">Una nueva vida está por comenzar y queremos compartir esta alegría contigo.</p>
+    <button class="btn-open" onclick="abrirInvitacion()">Toca para abrir</button>
+  </div>
+
+  <!-- PANTALLA 2: INVITACIÓN COMPLETA -->
+  <div class="invitation-card" id="invitationCard">
+    <div class="hero-banner">
+      <div class="floral-top">🌸 🌿 🌸</div>
+      <div class="welcome-text">Acompáñanos a celebrar la dulce espera de</div>
+      <h1 class="baby-title">Victoria</h1>
+      
+      <div class="bunny-img-container">
+        <!-- Imagen de la conejita con tutú (portada.jpg) -->
+        <img src="portada.jpg" alt="Conejita con Tutú Baby Shower Victoria" onerror="this.src='https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400'">
+      </div>
+    </div>
+
+    <!-- CONTADOR REGRESIVO -->
+    <div class="countdown-box">
+      <div class="count-item">
+        <div class="number" id="cd-dias">00</div>
+        <div class="label">Días</div>
+      </div>
+      <div class="count-item">
+        <div class="number" id="cd-horas">00</div>
+        <div class="label">Horas</div>
+      </div>
+      <div class="count-item">
+        <div class="number" id="cd-min">00</div>
+        <div class="label">Min</div>
+      </div>
+      <div class="count-item">
+        <div class="number" id="cd-seg">00</div>
+        <div class="label">Seg</div>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <!-- FECHA Y HORA -->
+      <div class="info-block">
+        <div class="info-header">📅 Fecha y Hora</div>
+        <div class="info-main">Sábado, 5 de Diciembre de 2026</div>
+        <div class="info-sub">Hora: 4:00 PM</div>
+      </div>
+
+      <!-- LUGAR DEL EVENTO -->
+      <div class="info-block">
+        <div class="info-header">📍 Ubicación del Evento</div>
+        <div class="info-main">Conjunto Residencial Torre 44</div>
+        <div class="info-sub">Carrera 17 Bis #43-71, Montería</div>
+        <div class="button-group-links">
+          <a class="btn-link-action" href="https://maps.google.com/?q=Carrera+17+Bis+%2343-71+Monteria" target="_blank">Abrir en Google Maps</a>
+          <a class="btn-link-action" href="https://waze.com/ul?q=Carrera+17+Bis+%2343-71+Monteria" target="_blank">Abrir en Waze</a>
+        </div>
+      </div>
+
+      <!-- LISTA DE REGALOS -->
+      <div class="info-block">
+        <div class="info-header">🎁 Lista Sugerida de Regalos</div>
+        <div class="info-main">Almacén SurtiBaby</div>
+        <div class="info-sub">Carrera 2 No 31-26, Montería</div>
+        <div class="button-group-links">
+          <a class="btn-link-action" href="https://maps.google.com/?q=SurtiBaby+Carrera+2+No+31-26+Monteria" target="_blank">Ver Mapa de SurtiBaby</a>
+        </div>
+      </div>
+
+      <!-- BOTÓN CONFIRMACIÓN WHATSAPP -->
+      <a class="action-button-main" id="btnWhatsapp" href="#" target="_blank">
+        Confirmar Asistencia por WhatsApp
+      </a>
+
+      <div class="footer-note">
+        ¡Tu compañía y cariño son el mejor regalo para Victoria!
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Personalización por parámetro en la URL (?para=Familia+Perez)
+  const urlParams = new URLSearchParams(window.location.search);
+  const invitado = urlParams.get('para') || 'Apreciada Familia';
+  document.getElementById('nombreInvitadoSobre').textContent = decodeURIComponent(invitado);
+
+  // Enlace dinámico de WhatsApp
+  const mensajeWA = encodeURIComponent('¡Hola! Con mucho gusto confirmo mi asistencia al Baby Shower de Victoria.');
+  document.getElementById('btnWhatsapp').href = 'https://api.whatsapp.com/send?text=' + mensajeWA;
+
+  // Apertura de sobre
+  function abrirInvitacion() {
+    document.getElementById('envelopeScreen').classList.add('opened');
+    document.getElementById('invitationCard').classList.add('active');
+  }
+
+  // Cuenta regresiva al 5 de Diciembre de 2026 a las 4:00 PM
+  const eventDate = new Date('2026-12-05T16:00:00').getTime();
+  setInterval(function() {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    if (distance > 0) {
+      document.getElementById('cd-dias').innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById('cd-horas').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('cd-min').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById('cd-seg').innerText = Math.floor((distance % (1000 * 60)) / 1000);
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
