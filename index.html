@@ -8,7 +8,7 @@
   <!-- Open Graph / Vista previa para WhatsApp y Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="¡Baby Shower de Victoria!">
-  <meta property="og:description" content="Sábado 5 de diciembre de 2026 a las 4:00 PM. Acompáñanos a celebrar la dulce espera. Haz clic para abrir la invitación.">
+  <meta property="og:description" content="Sábado 5 de diciembre de 2026 a las 4:00 PM. Acompáñanos a celebrar la dulce espera. Toca para abrir la invitación.">
   <meta property="og:image" content="portada.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -147,6 +147,7 @@
       box-shadow: 0 20px 45px rgba(180, 120, 135, 0.2);
       border: 1px solid rgba(247, 214, 220, 0.6);
       animation: fadeInCard 0.9s ease-out forwards;
+      position: relative;
     }
 
     .invitation-card.active {
@@ -156,6 +157,35 @@
     @keyframes fadeInCard {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* BOTON DE CONTROL MUSICAL */
+    .music-floating-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid var(--primary-pink);
+      box-shadow: 0 4px 10px rgba(217, 125, 145, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.2s;
+    }
+
+    .music-floating-btn.playing {
+      animation: rotateMusic 4s linear infinite;
+    }
+
+    @keyframes rotateMusic {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .hero-banner {
@@ -188,13 +218,14 @@
       margin: 4px 0 12px;
     }
 
+    /* CONTENEDOR Y ANIMACION DE BAILE DE LA CONEJITA CON TUTU */
     .bunny-img-container {
-      width: 200px;
-      height: 200px;
+      width: 210px;
+      height: 210px;
       margin: 0 auto;
       border-radius: 50%;
       background: #fffafb;
-      box-shadow: inset 0 0 15px rgba(217, 125, 145, 0.15);
+      box-shadow: inset 0 0 15px rgba(217, 125, 145, 0.15), 0 8px 24px rgba(217, 125, 145, 0.18);
       border: 4px solid #ffffff;
       display: flex;
       align-items: center;
@@ -206,6 +237,32 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transform-origin: 50% 85%;
+      animation: bunnyBalletDance 3.4s ease-in-out infinite;
+    }
+
+    @keyframes bunnyBalletDance {
+      0% {
+        transform: rotate(0deg) translateY(0px) scale(1);
+      }
+      18% {
+        transform: rotate(-3.5deg) translateY(-5px) scale(1.02);
+      }
+      36% {
+        transform: rotate(3.5deg) translateY(-2px) scale(1.02);
+      }
+      50% {
+        transform: rotate(0deg) translateY(-8px) scale(1.03);
+      }
+      68% {
+        transform: rotate(-2.5deg) translateY(-3px) scale(1.01);
+      }
+      84% {
+        transform: rotate(2.5deg) translateY(-1px) scale(1);
+      }
+      100% {
+        transform: rotate(0deg) translateY(0px) scale(1);
+      }
     }
 
     /* CONTADOR REGRESIVO */
@@ -339,13 +396,16 @@
 
   <!-- PANTALLA 2: INVITACIÓN COMPLETA -->
   <div class="invitation-card" id="invitationCard">
+    <!-- Botón flotante para pausar o reactivar la música -->
+    <button class="music-floating-btn playing" id="musicBtn" onclick="alternarMusica()" title="Pausar o reanudar música">🎵</button>
+
     <div class="hero-banner">
       <div class="floral-top">🌸 🌿 🌸</div>
       <div class="welcome-text">Acompáñanos a celebrar la dulce espera de</div>
       <h1 class="baby-title">Victoria</h1>
       
       <div class="bunny-img-container">
-        <!-- Imagen de la conejita con tutú (portada.jpg) -->
+        <!-- Imagen de la conejita con tutú (portada.jpg) animada bailando -->
         <img src="portada.jpg" alt="Conejita con Tutú Baby Shower Victoria" onerror="this.src='https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400'">
       </div>
     </div>
@@ -423,10 +483,87 @@
   const mensajeWA = encodeURIComponent('¡Hola! Con mucho gusto confirmo mi asistencia al Baby Shower de Victoria.');
   document.getElementById('btnWhatsapp').href = 'https://api.whatsapp.com/send?text=' + mensajeWA;
 
-  // Apertura de sobre
+  // SISTEMA DE AUDIO INTERNO (Melodía de Cuna - Caja de Música con Web Audio API)
+  let audioCtx = null;
+  let isPlayingMusic = false;
+  let melodyTimer = null;
+
+  const notas = [
+    { freq: 261.63, dur: 0.5 }, // C4
+    { freq: 261.63, dur: 0.5 }, // C4
+    { freq: 392.00, dur: 0.5 }, // G4
+    { freq: 392.00, dur: 0.5 }, // G4
+    { freq: 440.00, dur: 0.5 }, // A4
+    { freq: 440.00, dur: 0.5 }, // A4
+    { freq: 392.00, dur: 1.0 }, // G4
+    { freq: 349.23, dur: 0.5 }, // F4
+    { freq: 349.23, dur: 0.5 }, // F4
+    { freq: 329.63, dur: 0.5 }, // E4
+    { freq: 329.63, dur: 0.5 }, // E4
+    { freq: 293.66, dur: 0.5 }, // D4
+    { freq: 293.66, dur: 0.5 }, // D4
+    { freq: 261.63, dur: 1.0 }  // C4
+  ];
+
+  function reproducirNota(freq, duration) {
+    if (!audioCtx || !isPlayingMusic) return;
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch(e) {}
+  }
+
+  function iniciarMelodiaCajaMusica() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    isPlayingMusic = true;
+    document.getElementById('musicBtn').classList.add('playing');
+    document.getElementById('musicBtn').textContent = '🎵';
+
+    let index = 0;
+    function pasoMelodia() {
+      if (!isPlayingMusic) return;
+      const n = notas[index];
+      reproducirNota(n.freq, n.dur * 0.9);
+      index = (index + 1) % notas.length;
+      melodyTimer = setTimeout(pasoMelodia, n.dur * 850);
+    }
+    pasoMelodia();
+  }
+
+  function detenerMelodia() {
+    isPlayingMusic = false;
+    if (melodyTimer) clearTimeout(melodyTimer);
+    document.getElementById('musicBtn').classList.remove('playing');
+    document.getElementById('musicBtn').textContent = '🔇';
+  }
+
+  function alternarMusica() {
+    if (isPlayingMusic) {
+      detenerMelodia();
+    } else {
+      iniciarMelodiaCajaMusica();
+    }
+  }
+
+  // Apertura de sobre con activación musical
   function abrirInvitacion() {
     document.getElementById('envelopeScreen').classList.add('opened');
     document.getElementById('invitationCard').classList.add('active');
+    iniciarMelodiaCajaMusica();
   }
 
   // Cuenta regresiva al 5 de Diciembre de 2026 a las 4:00 PM
